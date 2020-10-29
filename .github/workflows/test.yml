@@ -25,18 +25,8 @@ jobs:
         id: findPr
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      # This will echo "Your PR is 7", or be skipped if there is no current PR.
-      - run: echo "Your PR is ${PR}"
-        if: success() && steps.findPr.outputs.number
-        env:
-          PR: ${{ steps.findPr.outputs.pr }}
-      - name: Echo env varibales
-        env:
-          REPO: ${{ github.repository }}
-          PRNUMBER: ${{ steps.findPr.outputs.pr }}
-        run: |
-          echo PR: $PRNUMBER
-          echo GitRepo: $REPO
+      - name: Print PR Number
+        run: echo ${{ github.event.issue.number }}
       - name: upload to S3
         uses: RandhirMSingh/S3Manager@main
         with:
