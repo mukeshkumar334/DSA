@@ -29,6 +29,7 @@ jobs:
         run: |
           echo PRNumber
           echo ${{ github.event.issue.number }}
+          echo PR Number: ${{github.event.pull_request.number}}
 #       - name: upload to S3
 #         uses: RandhirMSingh/S3Manager@main
 #         with:
