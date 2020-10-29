@@ -36,5 +36,5 @@ jobs:
           PRNUMBER: ${{ steps.findPr.outputs.pr }}
         run: |
           echo PR: ${{ steps.findPr.outputs.pr }}
-          echo GitRepo: ${{REPO}}
+          echo GitRepo: $REPO
      
