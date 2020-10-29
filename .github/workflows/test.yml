@@ -21,12 +21,19 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+      - uses: jwalton/gh-find-current-pr@v1
+        id: findPr
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      # This will echo "Your PR is 7", or be skipped if there is no current PR.
+      - run: echo "Your PR is ${PR}"
+        if: success() && steps.findPr.outputs.number
+        env:
+          PR: ${{ steps.findPr.outputs.pr }}
       - name: Echo env varibales
         env:
           REPO: ${{ github.repository }}
-          PR_NUMBER: ${{(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")}}
         run: |
-          echo PR Number: ${{PR_NUMBER}} 
+          echo PR Number: ${{PR}} 
           echo GitRepo: ${{REPO}}
      
