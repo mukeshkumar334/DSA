@@ -35,6 +35,6 @@ jobs:
           REPO: ${{ github.repository }}
           PRNUMBER: ${{ steps.findPr.outputs.pr }}
         run: |
-          echo PR: ${{ steps.findPr.outputs.pr }}
+          echo PR: $PRNUMBER
           echo GitRepo: $REPO
      
