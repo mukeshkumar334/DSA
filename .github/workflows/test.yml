@@ -9,7 +9,8 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
+env:
+  PR_NUMBER: ${{ github.event.pull_request.number }}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -21,12 +22,29 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      - name: Echo env varibales
-        env:
-          REPO: ${{ github.repository }}
-          PR_NUMBER: ${{(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")}}
+      - uses: jwalton/gh-find-current-pr@v1
+        id: findPr
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Print PR Number
         run: |
-          echo PR Number: ${{PR_NUMBER}} 
-          echo GitRepo: ${{REPO}}
+          echo PRNumber1
+          echo 1 ${{ github.event.issue.number }}
+          echo PR Number3: ${{github.event.pull_request.number}}
+          echo "PR number4 = ${{ env.PR_NUMBER }}"
+          echo "PR number5 = ${{ github.event.pull_request.number }}"
+#       - name: upload to S3
+#         uses: RandhirMSingh/S3Manager@main
+#         with:
+#           args: --acl public-read
+#         env:
+#           FILE:  "."
+#           AWS_REGION: 'ap-south-1'
+#           S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+#           S3_KEY: ${{ secrets.S3_KEY }}
+#           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           REPO: ${{ github.repository }}
+#           PR_NUMBER: ${{ github.event.issue.number }}
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
      
