@@ -9,7 +9,7 @@ on:
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
   COMMENT_STRING: ${{ github.event.comment.body }}
-  EVENT_TYPE: ${{github.event.GITHUB_EVENT_NAME}}
+  EVENT_TYPE: ${{ github.event.action }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,7 +22,7 @@ jobs:
       - name: Display the path
         run: |
           echo "Event type: ${{env.EVENT_TYPE}}"
-          if [ "$COMMENT_STRING" == *"screenshot:"* ] || [ "$COMMENT_STRING" == *"Screenshot:"* ];
+          if [[ "$COMMENT_STRING" == *"screenshot:"* ]];
           then
             echo "Started generating screenshots.."
           else
