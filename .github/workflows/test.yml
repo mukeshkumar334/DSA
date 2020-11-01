@@ -35,7 +35,7 @@ jobs:
         run: |
           import os
           print(os.environ['PATH'])
-          print(${{EVENT_TYPE}})
+          print(${{env.EVENT_TYPE}})
         shell: python
       - name: Print PR Number
         run: |
