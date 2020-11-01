@@ -22,7 +22,7 @@ jobs:
       - name: Display the path
         run: |
           echo "Event type: ${{env.EVENT_TYPE}}"
-          if [[ "$COMMENT_STRING" == *"screenshot:"* ]]
+          if [[ "$COMMENT_STRING" == *"screenshot:"* ] || [ "$COMMENT_STRING" == *"Screenshot:"* ] || [ "$COMMENT_STRING" == *"SCREENSHOT:"* ] || [ "$COMMENT_STRING" == *"screenshot"* ]]
           then
             echo "Started generating screenshots.."
           else
