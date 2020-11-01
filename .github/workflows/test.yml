@@ -37,7 +37,7 @@ jobs:
           echo PR Number3: ${{github.event.pull_request.number}}
           echo "PR number4 = ${{ env.PR_NUMBER }}"
           echo "PR number5 = ${{ github.event.pull_request.number }}"
-          echo "Comment ${{CommentString}}"
+          echo "Comment ${{env.CommentString}}"
 #       - name: upload to S3
 #         uses: RandhirMSingh/S3Manager@main
 #         with:
