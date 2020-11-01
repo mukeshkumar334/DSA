@@ -8,7 +8,7 @@ on:
     branches: [ master]
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
-  CommentString: ${{ github.event.comment.body }}
+  COMMENT_STRING: ${{ github.event.comment.body }}
   EVENT_TYPE: ${{github.event.GITHUB_EVENT_NAME}}
 jobs:
   build:
@@ -22,7 +22,7 @@ jobs:
       - name: Display the path
         run: |
           echo "Event type: ${{env.EVENT_TYPE}}"
-          if [[ "$STR" == *"screenshot:"* ]]
+          if [[ "$COMMENT_STRING" == *"screenshot:"* ]]
           then
             echo "Started generating screenshots.."
           else
@@ -36,7 +36,7 @@ jobs:
           echo PR Number3: ${{github.event.pull_request.number}}
           echo "PR number4 = ${{ env.PR_NUMBER }}"
           echo "PR number5 = ${{ github.event.pull_request.number }}"
-          echo "Comment ${{env.CommentString}}"
+          echo "Comment ${{env.COMMENT_STRING}}"
           echo "event type1: ${{env.GITHUB_EVENT_NAME}}"
 #       - name: upload to S3
 #         uses: RandhirMSingh/S3Manager@main
