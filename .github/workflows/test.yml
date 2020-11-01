@@ -15,7 +15,7 @@ on:
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
   CommentString: ${{ github.event.comment.body }}
-  EVENT_TYPE: ${{github.event.}}
+  EVENT_TYPE: ${{github.event.GITHUB_EVENT_NAME}}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
