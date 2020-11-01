@@ -33,10 +33,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Display the path
         run: |
-          import os
-          print(os.environ['PATH'])
-          print(${{env.EVENT_TYPE}})
-        shell: python
+          echo "Event type: ${{env.EVENT_TYPE}}"
+          if [[ "$STR" == *"screenshot:"* ] || [ "$STR" == *"SCREENSHOT:"* ]]; then
+            echo "Started generating screenshots.."
+          fi
+        #shell: bash
       - name: Print PR Number
         run: |
           echo PRNumber1
