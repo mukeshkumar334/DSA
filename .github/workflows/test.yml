@@ -9,8 +9,10 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  issue_comment: [master]
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
+  CommentString: ${{ github.event.comment.body }}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -33,6 +35,7 @@ jobs:
           echo PR Number3: ${{github.event.pull_request.number}}
           echo "PR number4 = ${{ env.PR_NUMBER }}"
           echo "PR number5 = ${{ github.event.pull_request.number }}"
+          echo "Comment ${{CommentString}}"
 #       - name: upload to S3
 #         uses: RandhirMSingh/S3Manager@main
 #         with:
