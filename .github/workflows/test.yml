@@ -9,7 +9,9 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-  issue_comment: [master]
+  issue_comment:
+  pull_request_target:
+    branches: [ master]
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
   CommentString: ${{ github.event.comment.body }}
