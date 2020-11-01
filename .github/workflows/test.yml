@@ -37,7 +37,7 @@ jobs:
           if [ "$STR" == *"screenshot:"* ] || [ "$STR" == *"SCREENSHOT:"* ]; then
             echo "Started generating screenshots.."
           fi
-        #shell: bash
+        shell: bash
       - name: Print PR Number
         run: |
           echo PRNumber1
