@@ -22,7 +22,8 @@ jobs:
       - name: Display the path
         run: |
           echo "Event type: ${{env.EVENT_TYPE}}"
-          if [ "$STR" == *"screenshot:"* ] || [ "$STR" == *"SCREENSHOT:"* ]; then
+          if [ "$STR" == *"screenshot:"* ] || [ "$STR" == *"SCREENSHOT:"* ]
+          then
             echo "Started generating screenshots.."
           else
             echo "Started fetching test plans..."
