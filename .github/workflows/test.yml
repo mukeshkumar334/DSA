@@ -15,6 +15,7 @@ on:
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
   CommentString: ${{ github.event.comment.body }}
+  EVENT_TYPE: ${{github.event.}}
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -30,6 +31,12 @@ jobs:
         id: findPr
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Display the path
+        run: |
+          import os
+          print(os.environ['PATH'])
+          print(${{EVENT_TYPE}})
+        shell: python
       - name: Print PR Number
         run: |
           echo PRNumber1
@@ -38,6 +45,7 @@ jobs:
           echo "PR number4 = ${{ env.PR_NUMBER }}"
           echo "PR number5 = ${{ github.event.pull_request.number }}"
           echo "Comment ${{env.CommentString}}"
+          echo "event type1: ${{env.GITHUB_EVENT_NAME}}"
 #       - name: upload to S3
 #         uses: RandhirMSingh/S3Manager@main
 #         with:
