@@ -25,6 +25,7 @@ jobs:
           echo "Event Name: $GITHUB_EVENT_NAME"
           echo "Event Path: ${{env.GITHUB_EVENT_PATH}}"
           cat ${{env.GITHUB_EVENT_PATH}}
+          cat github/workflow/event.json
           if [[ "$COMMENT_STRING" == *"screenshot:"* ]];
           then
             echo "Started generating screenshots.."
