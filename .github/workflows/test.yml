@@ -26,7 +26,7 @@ jobs:
           if [[ "$COMMENT_STRING" == *"screenshot:"* ]];
           then
             echo "Started generating screenshots.."
-          elif [[ "$GITHUB_EVENT_NAME"] == "pull_request"]
+          elif [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]
           then
             echo "Started fetching test plans..."
           else
