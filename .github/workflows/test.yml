@@ -23,6 +23,8 @@ jobs:
           echo "Event type: ${{env.EVENT_TYPE}}"
           echo "Event Name: ${{env.GITHUB_EVENT_NAME}}"
           echo "Event Name: $GITHUB_EVENT_NAME"
+          echo "Event Path: ${{env.GITHUB_EVENT_PATH}}"
+          cat ${{env.GITHUB_EVENT_PATH}}
           if [[ "$COMMENT_STRING" == *"screenshot:"* ]];
           then
             echo "Started generating screenshots.."
