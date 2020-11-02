@@ -4,7 +4,6 @@ on:
   pull_request:
     branches: [ master ]
   issue_comment:
-  pull_request_target:
     branches: [ master]
 env:
   PR_NUMBER: ${{ github.event.pull_request.number }}
@@ -27,8 +26,11 @@ jobs:
           if [[ "$COMMENT_STRING" == *"screenshot:"* ]];
           then
             echo "Started generating screenshots.."
-          else
+          elif [[ "$GITHUB_EVENT_NAME"] == "pull_request"]
+          then
             echo "Started fetching test plans..."
+          else
+            echo "No action performed."
           fi
         shell: bash
       - name: Print PR Number
