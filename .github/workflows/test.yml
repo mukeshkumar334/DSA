@@ -1,52 +1,52 @@
-name: CI
-
-on:
-  pull_request:
-    branches: [ master ]
-  issue_comment:
-    branches: [ master]
-env:
-  PR_NUMBER: ${{ github.event.pull_request.number }}
-  COMMENT_STRING: ${{ github.event.comment.body }}
-  EVENT_TYPE: ${{ github.event.action }}
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: jwalton/gh-find-current-pr@v1
-        id: findPr
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Display the path
-        run: |
-          echo "Event type: ${{env.EVENT_TYPE}}"
-          echo "Event Name: ${{env.GITHUB_EVENT_NAME}}"
-          echo "Event Name: $GITHUB_EVENT_NAME"
-          echo "Event Path: ${{env.GITHUB_EVENT_PATH}}"
-          cat ${{env.GITHUB_EVENT_PATH}}
-          cat github/workflow/event.json
-          if [[ "$COMMENT_STRING" == *"screenshot:"* ]];
-          then
-            echo "Started generating screenshots.."
-          elif [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]
-          then
-            echo "Started fetching test plans..."
-            exit 0
-          else
-            echo "No action performed."
-            exit 0
-          fi
-        shell: bash
-      - name: Print PR Number
-        run: |
-          echo PRNumber1
-          echo 1 ${{ github.event.issue.number }}
-          echo PR Number3: ${{github.event.pull_request.number}}
-          echo "PR number4 = ${{ env.PR_NUMBER }}"
-          echo "PR number5 = ${{ github.event.pull_request.number }}"
-          echo "Comment ${{env.COMMENT_STRING}}"
-          echo "event type1: ${{env.GITHUB_EVENT_NAME}}"
+#name: CI
+#
+#on:
+#  pull_request:
+#    branches: [ master ]
+#  issue_comment:
+#    branches: [ master]
+#env:
+#  PR_NUMBER: ${{ github.event.pull_request.number }}
+#  COMMENT_STRING: ${{ github.event.comment.body }}
+#  EVENT_TYPE: ${{ github.event.action }}
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2
+#      - uses: jwalton/gh-find-current-pr@v1
+#        id: findPr
+#        with:
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Display the path
+#        run: |
+#          echo "Event type: ${{env.EVENT_TYPE}}"
+#          echo "Event Name: ${{env.GITHUB_EVENT_NAME}}"
+#          echo "Event Name: $GITHUB_EVENT_NAME"
+#          echo "Event Path: ${{env.GITHUB_EVENT_PATH}}"
+#          cat ${{env.GITHUB_EVENT_PATH}}
+#          cat github/workflow/event.json
+#          if [[ "$COMMENT_STRING" == *"screenshot:"* ]];
+#          then
+#            echo "Started generating screenshots.."
+#          elif [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]
+#          then
+#            echo "Started fetching test plans..."
+#            exit 0
+#          else
+#            echo "No action performed."
+#            exit 0
+#          fi
+#        shell: bash
+#      - name: Print PR Number
+#        run: |
+#          echo PRNumber1
+#          echo 1 ${{ github.event.issue.number }}
+#          echo PR Number3: ${{github.event.pull_request.number}}
+#          echo "PR number4 = ${{ env.PR_NUMBER }}"
+#          echo "PR number5 = ${{ github.event.pull_request.number }}"
+#          echo "Comment ${{env.COMMENT_STRING}}"
+#          echo "event type1: ${{env.GITHUB_EVENT_NAME}}"
 #       - name: upload to S3
 #         uses: RandhirMSingh/S3Manager@main
 #         with:
