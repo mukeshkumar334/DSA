@@ -32,7 +32,7 @@ func divide(_ array: inout [Int], l: Int, r: Int) {
         divide(&array, l: l, r: mid)
         divide(&array, l: mid+1, r: r)
         
-        //Concquer
+        //Conquer
         merge(&array, l: l, m: mid, r: r)
     }
 }
