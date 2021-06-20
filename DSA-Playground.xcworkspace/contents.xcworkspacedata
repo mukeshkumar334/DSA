@@ -2,6 +2,15 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:Test/Test.playground">
+   </FileRef>
+   <FileRef
+      location = "group:../TG/TG.playground">
+   </FileRef>
+   <FileRef
+      location = "group:InsertionSort/InsertionSort.playground">
+   </FileRef>
+   <FileRef
       location = "group:SelectionSort/SelectionSort.playground">
    </FileRef>
 </Workspace>

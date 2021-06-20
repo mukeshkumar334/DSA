@@ -1,8 +1,8 @@
 
-var str = "Hello, playground"
-
-struct SelectionSort {
-    static func sort<T: Comparable>(array: inout [T]) -> [T]{
+extension Array where Element: Comparable {
+    ///Best: Ω(n^2),   Worst: O(n^2),  Average: θ(n^2)
+     mutating func selectionSort() {
+        var array = self
         for i in 0...array.count - 2 {
             var minmIndex = i
             
@@ -15,14 +15,13 @@ struct SelectionSort {
             array[minmIndex] = tempElement
         }
 
-        return  array
+        self = array
     }
 }
 
-
 var array1 = [4,9,5,6,3,1,7,8,2,14,11,13,12,18,15,19,16,20,17]
 var array2 = ["zebra","hello", "apple", "john", "flower", "martin", "mango", "man", "manima"]
-SelectionSort.sort(array: &array1)
+array1.selectionSort()
+//array2.selectionSort()
 print(array1)
-SelectionSort.sort(array: &array2)
-print(array2)
+//print(array2)
