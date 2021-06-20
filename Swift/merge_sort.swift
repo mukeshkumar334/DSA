@@ -3,7 +3,7 @@
 
 //In-place approach
 func merge(_ array: inout [Int], l: Int, m: Int, r: Int) {
-    //selection sort
+    //Insertion sort
     var i = m
     
     while i <= r   {
