@@ -42,3 +42,4 @@ extension Array where Element: Comparable {
 var array = [2, 1, 6, 10, 4, 1, 3, 9, 7]
 array.quickSort()
 print(array)
+//output: [1, 1, 2, 3, 4, 6, 7, 9, 10]
