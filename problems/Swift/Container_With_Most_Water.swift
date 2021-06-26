@@ -11,11 +11,10 @@ class Solution {
         var maxArea = 0
         
         while start < end {
+            maxArea = max(maxArea, (end - start) * min(height[start], height[end]))
             if height[end] <= height[start] {
-                maxArea = max(maxArea, (end - start) * height[end])
                 end -= 1    
             } else {
-                maxArea = max(maxArea, (end-start) * height[start])
                 start += 1
             }
         }
