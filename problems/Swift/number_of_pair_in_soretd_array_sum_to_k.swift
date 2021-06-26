@@ -22,7 +22,7 @@ func pairCount(in array: [Int], k: Int) -> Int {
                 i += 1
                 j -= 1
             } else {
-                pairCount += (j-i)
+                pairCount += (j-i+1)
                 break
             }
         }
