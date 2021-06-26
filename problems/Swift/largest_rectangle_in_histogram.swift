@@ -5,7 +5,7 @@ the largest rectangle in the histogram.
 */
 
 
-//TC: O(N^2)
+//TC: O(n^2)
 //SC: O(1)
 func largestRectangleArea(arr: [Int]) -> Int {
     var area = arr[0]
@@ -24,3 +24,29 @@ func largestRectangleArea(arr: [Int]) -> Int {
     return area
 }
 
+//TC: O(n)
+func largestRectangle(in histo: [Int]) -> Int {
+    var area = 0
+    
+    //to stack indexes, lowest at buttom
+    var stack = [Int]()
+    var i = 0
+    while i < histo.count {
+        if stack.isEmpty || histo[stack.peek] <= histo[i] {
+            stack.push(i)
+            i += 1
+        } else {
+            let top = stack.peek
+            stack.pop()
+            area = max(area, histo[top] * (stack.isEmpty ? i : (i - stack.peek - 1)))
+        }
+    }
+    
+    while stack.isEmpty == false {
+        let top = stack.peek
+        stack.pop()
+        area = max(area, histo[top] * (stack.isEmpty ? i : (i - stack.peek - 1)))
+    }
+    
+    return area
+}
